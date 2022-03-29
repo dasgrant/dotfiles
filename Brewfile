@@ -1,0 +1,40 @@
+# Taps
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+# Formulae
+brew "bash"
+brew "bash-completion"
+brew "bat"
+brew "coreutils"
+brew "gh"
+brew "git"
+brew "git-delta"
+brew "grc"
+brew "grep"
+brew "mas"
+brew "n"
+brew "node"
+brew "starship"
+brew "wget"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-history-substring-search"
+brew "zsh-syntax-highlighting"
+
+# Casks
+cask "firefox"
+cask "google-chrome"
+cask "github"
+cask "slack"
+cask "spotify"
+cask "visual-studio-code"
+cask "keepingyouawake"
+cask "maccy"
+
+# Fonts
+cask "font-fira-code"
+cask "font-fira-code-nerd-font"
+cask "font-cascadia-code"
+cask "font-caskaydia-cove-nerd-font"
