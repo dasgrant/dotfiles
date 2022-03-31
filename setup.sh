@@ -98,7 +98,7 @@ success "Touch ID for sudo complete!"
 
 title "macOS"
 
-working "Setting preferences..."
+working "Setting macOS preferences..."
 sh macos/settings.sh
 success "macOS preferences set!"
 
