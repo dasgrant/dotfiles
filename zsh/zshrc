@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+
+# -----------------------------------------------
+# START: ALIASES
+# -----------------------------------------------
+
+alias ..="cd .."
+alias cd..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+
+alias mac-update="sudo softwareupdate --install --all && brew update && brew upgrade && brew cleanup"
+
+# -----------------------------------------------
+# END: ALIASES
+# -----------------------------------------------
+
+
+# -----------------------------------------------
+# START: PROMPT
+# -----------------------------------------------
+
+vcs_info=''
+function get-vcs-info {
+  vcs_info=''
+  git rev-parse --is-inside-work-tree &>/dev/null || return
+  local ref=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
+  if [[ -z "$ref" ]];
+    then
+        vcs_info=''
+    else
+        st=''
+        # Check for uncommitted changes in the index
+        if ! $(git diff --quiet --ignore-submodules --cached);
+            then
+                st="$st+"
+        fi
+        # Check for unstaged changes
+        if ! $(git diff-files --quiet --ignore-submodules --);
+            then
+                st="$st!"
+        fi
+        # Check for untracked files
+        if [ -n "$(git ls-files --others --exclude-standard)" ];
+            then
+                st="$st?"
+        fi
+        # Check for stashed files
+        if $(git rev-parse --verify refs/stash &>/dev/null);
+            then
+                st="$st$"
+        fi
+        vcs_info="%F{yellow}∴%f %F{magenta}${ref}${st}%f "
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd get-vcs-info
+add-zsh-hook chpwd get-vcs-info
+setopt PROMPT_SUBST
+PROMPT='%F{blue}%1~%f ${vcs_info}%F{yellow}⊙%f '
+
+# -----------------------------------------------
+# END: PROMPT
+# -----------------------------------------------

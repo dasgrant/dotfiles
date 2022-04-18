@@ -57,14 +57,14 @@ working "Checking for Homebrew..."
 if test ! $(which brew);
   then
     working "Installing Homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     success "Brews ready!"
   else 
     success "Brews ready!"
 fi
 
 working "Grabbing brews..."
-# brew bundle
+brew bundle
 success "Brews Drank!"
 
 # -----------------------------------------------
@@ -96,11 +96,11 @@ success "Touch ID for sudo complete!"
 # START: macOS
 # -----------------------------------------------
 
-title "macOS"
+# title "macOS"
 
-working "Setting macOS preferences..."
-sh macos/settings.sh
-success "macOS preferences set!"
+# working "Setting macOS preferences..."
+# sh macos/settings.sh
+# success "macOS preferences set!"
 
 # -----------------------------------------------
 # END: macOS
@@ -111,10 +111,10 @@ success "macOS preferences set!"
 # START: SYMLINKS
 # -----------------------------------------------
 
-title "Symlinks"
+# title "Symlinks"
 
-working "Creating symlinks..."
-success "Symlink process complete!"
+# working "Creating symlinks..."
+# success "Symlink process complete!"
 
 
 # -----------------------------------------------
